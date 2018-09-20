@@ -9,9 +9,13 @@
 
 ## 二、入口：entry
 
-1.entry:'./src/index.js'
+1.单个js文件
 
-2.对象,按照name生成多个js文件,放入html中
+``` javascript
+  entry: './src/index.js'
+```
+
+2.对象方式,按照name生成多个js文件,放入html中
 
 ``` javascript
   entry: {
@@ -20,7 +24,7 @@
   }
 ```
 
-3.数组，数组中的js合成一个js放入生成的html文件中
+3.数组方式，数组中的js合成一个js放入生成的html文件中
 
 ``` javascript
 entry: ['./src/index.js','./src/print.js']
