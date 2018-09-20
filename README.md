@@ -4,25 +4,25 @@
 
 1.本地安装webpack4+
 ```shell
-      npm install --save-dev webpack webpack-cli
+  npm install --save-dev webpack webpack-cli
 ```
 
 ## 二、入口：entry
-``` javascript
-    1.entry:'./src/index.js'
-    2.对象,按照name生成多个js文件,放入html中
+1.entry:'./src/index.js'
+2.对象,按照name生成多个js文件,放入html中
       entry: {
         app: './src/index.js',
         print: './src/print.js'
       }
-    3.数组，数组中的js合成一个js放入生成的html文件中
-      entry: ['./src/index.js','./src/print.js']
-```   
+3.数组，数组中的js合成一个js放入生成的html文件中
+
+entry: ['./src/index.js','./src/print.js']
+
 ## 三、模块解析
 
-    1.css
-      安装：
-      ``` shell
+1.css
+安装：
+``` shell
       npm install --save-dev style-loader css-loader
       ```
       ``` javascript
