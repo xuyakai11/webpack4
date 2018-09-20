@@ -11,8 +11,8 @@
   ```shell
   npm run dev
   ```
-  
-  部分不需要使用的模块、插件等在package.json和webpack.config.js中去掉相应配置之后，再执行1,2,3步即可
+
+  如果你不想使用全部的依赖(模块、插件)，只需在package.json和webpack.config.js中去掉相应配置之后，再执行1,2,3步即可
 
 
 # 从零开始 webpack4
