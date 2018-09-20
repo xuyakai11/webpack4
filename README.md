@@ -29,6 +29,7 @@ entry: ['./src/index.js','./src/print.js']
 ## 三、模块解析
 
 1.css
+
 安装：
 ``` shell
 npm install --save-dev style-loader css-loader
@@ -47,6 +48,7 @@ rules: [
 ```
 
 2.图片
+
 安装:
 ``` shell
 npm install --save-dev file-loader
@@ -62,6 +64,7 @@ npm install --save-dev file-loader
 ```
 
 3.使用sass
+
 安装：
 ``` shell
 npm install node-sass --save-dev
@@ -79,6 +82,7 @@ npm install sass-loader --save-dev
 ## 四、plugins
 
 1.使用html插件
+
 安装：
 ``` shell
 npm install --save-dev html-webpack-plugin
@@ -93,6 +97,7 @@ plugins: [
 ```
 
 2.清理 /dist 文件夹
+
 安装：
 ``` shell
 npm install --save-dev clean-webpack-plugin
