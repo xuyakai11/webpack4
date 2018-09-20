@@ -2,11 +2,17 @@
 
   1.clone项目到本地项目下
 
-  2.npm install
+  2.安装依赖
+  ```shell
+  npm install
+  ```
 
-  3.npm run dev
-
-  部分不需要使用的模块等在package.json和webpack.config.js中去掉相应配置之后，在执行1,2,3步即可
+  3.运行
+  ```shell
+  npm run dev
+  ```
+  
+  部分不需要使用的模块、插件等在package.json和webpack.config.js中去掉相应配置之后，再执行1,2,3步即可
 
 
 # 从零开始 webpack4
