@@ -1,3 +1,14 @@
+# 快速使用 webpack4 构建项目
+
+  1.clone项目到本地项目下
+
+  2.npm install
+
+  3.npm run dev
+
+  部分不需要使用的模块等在package.json和webpack.config.js中去掉相应配置之后，在执行1,2,3步即可
+
+
 # 从零开始 webpack4
 
 ## 一、安装
