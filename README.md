@@ -58,6 +58,8 @@ entry: ['./src/index.js','./src/print.js']
 npm install --save-dev style-loader css-loader
 ```
 
+在rules里面加上
+
 ``` javascript
 rules: [
     {
@@ -76,6 +78,8 @@ rules: [
 ``` shell
 npm install --save-dev file-loader
 ```
+
+在rules里面加上
 
 ``` javascript
 {
@@ -100,7 +104,7 @@ npm install node-sass --save-dev
 npm install sass-loader --save-dev
 ```
 
-第二步，打开webpack.base.config.js在loaders里面加上
+在rules里面加上
 ``` javascript
 {
     test: /\.scss$/,
@@ -116,6 +120,7 @@ npm install sass-loader --save-dev
 ``` shell
 npm install --save-dev html-webpack-plugin
 ```
+plugins里加上
 
 ``` javascript
 plugins: [
@@ -132,10 +137,16 @@ plugins: [
 npm install --save-dev clean-webpack-plugin
 ```
 
+plugins里加上
+``` javascript
+new CleanWebpackPlugin(['dist'])
+```
+
 ## 五、显示错误源代码的位置
 ``` javascript
 devtool: 'inline-source-map'
 ```
+
 ## 六、热重载 webpack-dev-server
 
 安装：
@@ -143,3 +154,9 @@ devtool: 'inline-source-map'
 npm install --save-dev webpack-dev-server
 ```
 
+``` javascript
+devServer: {
+  contentBase: path.join(__dirname, "dist"),
+  port: 8080 // 端口号
+}     
+```
