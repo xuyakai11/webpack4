@@ -1,20 +1,20 @@
 # 快速使用 webpack4 构建项目
   
-  说明：请更新node至最新版本
+说明：请更新node至最新版本
 
-  1.clone项目到本地项目下
+1.clone项目到本地项目下
 
-  2.安装依赖
-  ```shell
-  npm install
-  ```
+2.安装依赖
+```shell
+npm install
+```
 
-  3.运行
-  ```shell
-  npm run dev
-  ```
+3.运行
+```shell
+npm run dev
+```
 
-  如果你不想使用全部的依赖(模块、插件)，只需在package.json和webpack.config.js中去掉相应配置之后，再执行1,2,3步即可
+如果你不想使用全部的依赖(模块、插件)，只需在package.json和webpack.config.js中去掉相应配置之后，再执行1,2,3步即可
 
 
 # 从零开始 webpack4
