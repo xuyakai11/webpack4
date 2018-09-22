@@ -1,13 +1,11 @@
 const path = require('path');
+const webpack = require('webpack');
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     mode: "production", // "production" | "development" | "none"
-    // entry: {
-    //   app: './src/index.js',
-    //   print: './src/print.js'
-    // }, 按照name生成多个js文件
     entry: ['./src/index.js','./src/print.js'],//数组的方式多个合成一个js
     output:{
         filename: "[name].[hash].js", // string
@@ -44,7 +42,9 @@ module.exports = {
         new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
           title: 'Output Management'
-        })
+        }),
+        new webpack.NamedModulesPlugin(),
+        new webpack.HotModuleReplacementPlugin()
     ],
     // plugins: [
     //     new htmlWebpackPlugin({  // 本节课的重头戏！！！！！！
@@ -67,6 +67,7 @@ module.exports = {
     // ],
     devServer: {
       contentBase: path.join(__dirname, "dist"),
-      port: 3000
+      port: 3000,
+      hot:true
     }
 }

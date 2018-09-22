@@ -76,22 +76,25 @@ rules: [
 
 安装:
 ``` shell
-npm install --save-dev file-loader
+npm install --save-dev url-loader
 ```
 
 在rules里面加上
 
 ``` javascript
 {
-   test: /\.(png|svg|jpg|gif)$/,
-   use: [
-     'file-loader'
-   ]
+  test: /\.(png|svg|jpg|gif)$/,
+  use: [
+   'url-loader',
+    options:{
+      limit:5000
+    }
+  ]
 },
 {
     test: /\.(woff|woff2|eot|ttf|otf)$/,
     use: [
-        'file-loader'
+        'url-loader'
     ]
 }
 ```
@@ -100,8 +103,7 @@ npm install --save-dev file-loader
 
 安装：
 ``` shell
-npm install node-sass --save-dev
-npm install sass-loader --save-dev
+npm install node-sass sass-loader --save-dev
 ```
 
 在rules里面加上
@@ -142,12 +144,24 @@ plugins里加上
 new CleanWebpackPlugin(['dist'])
 ```
 
-## 五、显示错误源代码的位置
+## 五、配置生产和开发环境
+
+安装：
+``` shell
+npm install --save-dev webpack-merge
+```
+
+1.通用配置文件：wepack.common.js 
+
+2.开发环境，配置文件：webpack.dev.js
+
+显示错误源代码的位置
 ``` javascript
+mode: "development",
 devtool: 'inline-source-map'
 ```
 
-## 六、热重载 webpack-dev-server
+热重载
 
 安装：
 ``` shell
@@ -159,4 +173,29 @@ devServer: {
   contentBase: path.join(__dirname, "dist"),
   port: 8080 // 端口号
 }     
+```
+
+配置模块热替换
+``` javascript
+new webpack.HotModuleReplacementPlugin()
+```
+
+3.生产环境，配置文件：wepack.prod.js
+
+不需要source map
+``` javascript
+mode: "production",
+devtool: 'none'
+```
+
+压缩输出
+``` javascript
+new UglifyJSPlugin()
+```
+
+chunkhash用于缓存没有做修改的文件，开发环境不能配置此值，会报错
+``` javascript
+output: {
+  filename: '[name].[chunkhash].js'
+}
 ```
