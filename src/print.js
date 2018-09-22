@@ -1,6 +1,8 @@
 import './style.css';
 import './index.scss';
 import { cube } from './math.js';
+import Test from './common.js';
+import $ from './jquery-3.1.1.min.js';
 
 export default function print(text){
 	console.log(cube(2),text)
@@ -9,9 +11,11 @@ export default function print(text){
 
 function component() {
 	let element = document.createElement('div'),
-			text = document.createTextNode('wahahh!!');
- 	element.appendChild(text)
+			point = new Test(2,3),
+			text = document.createTextNode(point.toString());
+
+ 	element.appendChild(text);
   return element;
 }
 
-document.body.appendChild(component());
+$('body').append(component());

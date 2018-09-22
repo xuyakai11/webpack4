@@ -7,8 +7,9 @@ module.exports = {
   entry: {
     index: './src/index.js',
     print: './src/print.js',
+    common: './src/common.js',
     vendor: [
-    	'./src/common.js'
+    	'./src/jquery-3.1.1.min.js'
     ]
   },
   output: {
@@ -74,36 +75,13 @@ module.exports = {
       }
    	]
 	},
-  optimization:{
-  	splitChunks:{
-			cacheGroups: {
-		    vendor:{
-		        chunks:"all",
-		        test: /[\\/]node_modules[\\/]/,
-		        name:"vendor",
-		        minChunks: 1, 
-		        maxInitialRequests: 5,
-		        minSize: 0,
-		        priority:100
-		    },
-		    common: {
-		        chunks:"all",
-		        name: "common",
-		        minChunks: 1,
-		        maxInitialRequests: 5,
-		        minSize: 0,
-		        priority:1
-		    }
-			}
-  	}
-  },
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
       title: 'index',
       filename: "index.html", // 编译后的文件名称
       template: path.resolve(__dirname, "src")+'/index.html',
-      chunks:['index'],
+      chunks:['vendor','index'],
       cache: true
     }),
     new HtmlWebpackPlugin({
