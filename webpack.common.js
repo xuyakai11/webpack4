@@ -8,7 +8,7 @@ module.exports = {
     index: './src/index.js',
     print: './src/print.js',
     vendor: [
-    	'./src/jquery-3.1.1.js'
+    	'./src/common.js'
     ]
   },
   output: {
@@ -16,6 +16,16 @@ module.exports = {
   },
   module:{
    	rules:[
+   		{
+   		  test: /\.js$/,
+   		  exclude: /(node_modules|bower_components)/,
+   		  use: {
+   		    loader: 'babel-loader',
+   		    options: {
+   		      presets: ['@babel/preset-env']
+   		    }
+   		  }
+   		},
 			{
 				test: /\.css$/, // 处理less文件
 				exclude: /node-modules/,  // 规避掉node_modules文件
@@ -32,19 +42,35 @@ module.exports = {
         use:['style-loader','css-loader','sass-loader']
       },
       {
-				test: /\.(png|svg|jpg|gif)$/,
-				use: [{
-				  loader:'url-loader',
-				  options:{
-				    limit:5000
-				  }
-				}]
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+           {
+            loader: 'url-loader',
+            options: {
+              limit: 8192
+            }
+          }
+        ]
       },
       {
-				test: /\.(woff|woff2|eot|ttf|otf)$/,
-				use: [
-				   'url-loader'
-				]
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: [
+           {
+            loader: 'url-loader',
+            options: {
+              limit: 8192
+            }
+          }
+        ]
+      },
+      {
+	      test: /\.html$/,
+	      use: [{
+	        loader: 'html-loader',
+	        options: {
+	          minimize: true
+	        }
+	      }]
       }
    	]
 	},
@@ -63,7 +89,7 @@ module.exports = {
 		    common: {
 		        chunks:"all",
 		        name: "common",
-		        minChunks: 2,
+		        minChunks: 1,
 		        maxInitialRequests: 5,
 		        minSize: 0,
 		        priority:1
@@ -76,14 +102,14 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'index',
       filename: "index.html", // 编译后的文件名称
-      template: './src/index.html',
+      template: path.resolve(__dirname, "src")+'/index.html',
       chunks:['index'],
       cache: true
     }),
     new HtmlWebpackPlugin({
       title: 'detail',
       filename: "detail.html", // 编译后的文件名称
-      template: './src/detail.html',
+      template: path.resolve(__dirname, "src")+'/detail.html',
       chunks:['vendor','common','print'],
       cache: true
     })

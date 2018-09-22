@@ -1,5 +1,6 @@
+import './style.css';
+import './index.scss';
 import { cube } from './math.js';
-import yaoyao from '../images/yaoyao.jpg';
 
 export default function print(text){
 	console.log(cube(2),text)
@@ -7,14 +8,10 @@ export default function print(text){
 }
 
 function component() {
-  var element = document.createElement('div');
-
-   var b = new Image();
-   b.src = yaoyao;
-   element.appendChild(b)
-
+	let element = document.createElement('div'),
+			text = document.createTextNode('wahahh!!');
+ 	element.appendChild(text)
   return element;
 }
 
 document.body.appendChild(component());
-console.log(cube(2))

@@ -76,7 +76,7 @@ rules: [
 
 安装:
 ``` shell
-npm install --save-dev url-loader
+npm install --save-dev file-loader url-loader
 ```
 
 在rules里面加上
@@ -85,18 +85,25 @@ npm install --save-dev url-loader
 {
   test: /\.(png|svg|jpg|gif)$/,
   use: [
-   'url-loader',
-    options:{
-      limit:5000
+     {
+      loader: 'url-loader',
+      options: {
+        limit: 8192
+      }
     }
   ]
 },
 {
-    test: /\.(woff|woff2|eot|ttf|otf)$/,
-    use: [
-        'url-loader'
-    ]
-}
+  test: /\.(woff|woff2|eot|ttf|otf)$/,
+  use: [
+     {
+      loader: 'url-loader',
+      options: {
+        limit: 8192
+      }
+    }
+  ]
+},
 ```
 
 3.使用sass
@@ -113,6 +120,28 @@ npm install node-sass sass-loader --save-dev
     loaders: ['style', 'css', 'sass']
 }
 ```
+
+4.babel es6转es5
+
+安装：
+``` shell
+npm install -D babel-loader @babel/core @babel/preset-env
+```
+
+在rules里面加上
+``` javascript
+{
+  test: /\.js$/,
+  exclude: /(node_modules|bower_components)/,
+  use: {
+    loader: 'babel-loader',
+    options: {
+      presets: ['@babel/preset-env']
+    }
+  }
+}
+```
+
 
 ## 四、plugins
 
@@ -132,7 +161,26 @@ plugins: [
 ]
 ```
 
-2.清理 /dist 文件夹
+2.处理html中静态资源文件
+安装：
+``` shell
+npm i -D html-loader
+```
+
+在rules里面加上
+``` javascript
+{
+  test: /\.html$/,
+  use: [{
+    loader: 'html-loader',
+    options: {
+      minimize: true
+    }
+  }]
+}
+```
+
+3.清理 /dist 文件夹
 
 安装：
 ``` shell
