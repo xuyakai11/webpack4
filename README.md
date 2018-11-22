@@ -179,8 +179,19 @@ npm i -D html-loader
   }]
 }
 ```
+3.提取引入的公用js等，防止引用相同文件而导致的重复打包
 
-3.清理 /dist 文件夹
+``` javascript
+// plugins的同级加上：
+optimization: {
+  splitChunks: {
+    chunks: 'all'
+  }
+},
+// plugins:[]
+```
+
+4.清理 /dist 文件夹
 
 安装：
 ``` shell

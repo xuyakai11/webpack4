@@ -6,11 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: {
     index: './src/index.js',
-    print: './src/print.js',
-    common: './src/common.js',
-    vendor: [
-    	'./src/jquery-3.1.1.min.js'
-    ]
+    print: './src/print.js'
   },
   output: {
     path: path.resolve(__dirname, 'dist')
@@ -74,21 +70,32 @@ module.exports = {
 	      }]
       }
    	]
-	},
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          name: 'commons',
+          chunks: 'initial',
+          minChunks: 2
+        }
+      }
+    }
+  },
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
       title: 'index',
       filename: "index.html", // 编译后的文件名称
       template: path.resolve(__dirname, "src")+'/index.html',
-      chunks:['vendor','index'],
+      chunks:['index'],
       cache: true
     }),
     new HtmlWebpackPlugin({
       title: 'detail',
       filename: "detail.html", // 编译后的文件名称
       template: path.resolve(__dirname, "src")+'/detail.html',
-      chunks:['vendor','common','print'],
+      chunks:['print'],
       cache: true
     })
   ]
